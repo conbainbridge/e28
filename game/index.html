@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        #shoot {
+            margin: 15px;
+            padding: 15px;
+            background-color: grey;
+            color: white;
+            border: 2px solid black;
+        }
+
+        #shoot:hover {
+            margin: 15px;
+            padding: 15px;
+            background-color: lightgrey;
+            color: white;
+            border: 2px solid blue;
+            transition: 0.5s;
+        }
+
+        .lose {
+            color: red;
+        }
+
+        .win {
+            color: green;
+        }
+
+        .draw {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Let's play rock, paper, scissors!</h1>
+    <form>
+        <label><input type='radio' name='hand' value='rock'>Rock!</label><br>
+        <label><input type='radio' name='hand' value='paper'>Paper!</label><br>
+        <label><input type='radio' name='hand' value='scissors'>Scissors!</label><br>
+    </form>
+    <button id='shoot'>Shoot!</button>
+    <div id='game-result'></div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
