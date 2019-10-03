@@ -6,6 +6,8 @@ function gamePlay() {
     let humanHand = document.querySelector('input[name="hand"]:checked').value;
     let i = Math.floor(Math.random() * 3);
     let response = 'The computer chose ' + computerHand[i] + '.';
+    var index = 3;
+    computerHand.append('test');
     if (computerHand[i] == 'rock' && humanHand == 'paper') {
         gameResult.innerHTML = response + ' <span class="win">You win this round!</span>';
     } else if (computerHand[i] == 'rock' && humanHand == 'scissors') {
