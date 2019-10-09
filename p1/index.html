@@ -4,6 +4,7 @@
 <head>
     <title>Rock, paper, scissors, shoot!</title>
     <meta charset='utf-8'>
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
     <script src="script.js" defer></script>
@@ -15,6 +16,13 @@
 
         body {
             background-color: grey;
+            font-family: 'Mansalva', cursive;
+            font-size: 18px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
         }
 
         #app {
@@ -31,6 +39,7 @@
             background-color: grey;
             color: white;
             border: 2px solid black;
+            font-family: 'Mansalva', cursive;
             font-size: 24px;
         }
 
@@ -63,6 +72,7 @@
 </head>
 
 <body>
+    <h1>Rock, paper, scissors, shoot!</h1>
     <div id="app" v-cloak>
 
         <form>
@@ -74,7 +84,7 @@
         <button id='shoot' v-on:click='handThrowFunc'>Shoot!</button>
 
         <template v-if='compHand'>
-            <div>The computer chose <strong>{{ compHand }}</strong></div>
+            <div>The computer chose {{ compHand }}</div>
             <div class='win' v-if='results == "win"'>You win!</div>
             <div class='lose' v-else-if='results == "lose"'>Computer wins.</div>
             <div class='draw' v-else-if='results == "draw"'>It's a draw!</div>
