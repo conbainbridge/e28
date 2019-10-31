@@ -5,9 +5,8 @@
     <title>Rock, paper, scissors, shoot!</title>
     <meta charset='utf-8'>
     <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
-    <script src="script.js" defer></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script> -->
+    <script src="js/script.js" defer></script>
 
     <style>
         [v-cloak] {
@@ -93,12 +92,10 @@
             <div v-else-if='results == "nothing"'>Hey, you didn't even try!</div>
         </template>
 
-        <round-detail v-for='round in rounds' @delete-round='deleteRound($event)' :number='round.number'
-            :winner='round.winner' :key='round.number'>
-
-            <template #humanHand>You chose {{ round.humanHand }}</template>
+        <round-detail v-for='round in rounds' :number='round.number' :key='round.number'>
+            <template #humanHand>Round: {{ round.number }}</template>
+            <template #compHand>You chose {{ round.humanHand }}</template>
             <template #compHand>Computer chose {{ round.compHand }}</template>
-
         </round-detail>
 
     </div>

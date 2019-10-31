@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import RoundDetail from '.components/RoundDetail.vue';
+import RoundDetail from './components/RoundDetail.vue';
 
 // root Vue instance
 var app = new Vue({
