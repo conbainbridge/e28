@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <title>Rock, paper, scissors, shoot!</title>
+    <meta charset='utf-8'>
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        body {
+            background-color: grey;
+            font-family: 'Mansalva', cursive;
+            font-size: 18px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        #app {
+            background-color: white;
+            margin: 50px 20% 0px 20%;
+            padding: 50px 0px;
+            text-align: center;
+            box-shadow: 10px 10px 10px #4d4d4d;
+        }
+
+        #shoot {
+            margin: 15px;
+            padding: 15px;
+            background-color: grey;
+            color: white;
+            border: 2px solid black;
+            font-family: 'Mansalva', cursive;
+            font-size: 24px;
+        }
+
+        #shoot:hover {
+            cursor: pointer;
+            margin: 15px;
+            padding: 15px;
+            background-color: lightgrey;
+            color: white;
+            border: 2px solid grey;
+            transition: 0.5s;
+        }
+
+        div {
+            background-color: white;
+        }
+
+        .lose {
+            color: red;
+        }
+
+        .win {
+            color: green;
+        }
+
+        .draw {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Rock, paper, scissors, shoot!</h1>
+
+    <div id="app" v-cloak>
+
+        <form>
+            <label><input type='radio' name='hand' value='rock' v-model='humanHand'>Rock!</label><br>
+            <label><input type='radio' name='hand' value='paper' v-model='humanHand'>Paper!</label><br>
+            <label><input type='radio' name='hand' value='scissors' v-model='humanHand'>Scissors!</label><br>
+        </form>
+
+        <button id='shoot' v-on:click='handThrowFunc'>Shoot!</button>
+
+        <template v-if='compHand'>
+            <div>The computer chose {{ compHand }}</div>
+            <div class='win' v-if='results == "win"'>You win!</div>
+            <div class='lose' v-else-if='results == "lose"'>Computer wins.</div>
+            <div class='draw' v-else-if='results == "draw"'>It's a draw!</div>
+            <div v-else-if='results == "nothing"'>Hey, you didn't even try!</div>
+        </template>
+
+        <round-detail v-for='round in rounds' @delete-round='deleteRound($event)' :number='round.number'
+            :winner='round.winner' :key='round.number'>
+
+            <template #humanHand>You chose {{ round.humanHand }}</template>
+            <template #compHand>Computer chose {{ round.compHand }}</template>
+
+        </round-detail>
+
+    </div>
+</body>
+
+</html>
