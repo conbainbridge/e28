@@ -19,7 +19,6 @@ var app = new Vue({
         handThrowFunc: function () {
             let i = Math.floor(Math.random() * 3);
             this.compHand = this.hands[i];
-            console.log(this.compHand);
             if (this.compHand == this.humanHand) {
                 this.results = 'draw';
             } else if (this.humanHand == 'rock') {
@@ -44,8 +43,12 @@ var app = new Vue({
                 this.results = 'nothing';
             }
 
-            this.rounds.push({
+            console.log(this.compHand);
+
+            this.rounds.unshift({
                 number: this.round++,
+                results: this.results,
+                hands: 'The computer chose ' + this.compHand + '. You chose ' + this.humanHand
             })
         }
     }

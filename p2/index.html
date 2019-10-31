@@ -84,18 +84,11 @@
 
         <button id='shoot' v-on:click='handThrowFunc'>Shoot!</button>
 
-        <template v-if='compHand'>
-            <div>The computer chose {{ compHand }}</div>
-            <div class='win' v-if='results == "win"'>You win!</div>
-            <div class='lose' v-else-if='results == "lose"'>Computer wins.</div>
-            <div class='draw' v-else-if='results == "draw"'>It's a draw!</div>
-            <div v-else-if='results == "nothing"'>Hey, you didn't even try!</div>
-        </template>
-
-        <round-detail v-for='round in rounds' :number='round.number' :key='round.number'>
+        <round-detail v-for='round in rounds' :number='round.number' :results='round.results' :hands='round.hands'
+            :key='round.number'>
             <template #humanHand>Round: {{ round.number }}</template>
-            <template #compHand>You chose {{ round.humanHand }}</template>
-            <template #compHand>Computer chose {{ round.compHand }}</template>
+            <template #results>Results: {{ round.results }}</template>
+            <template #hands>{{ round.hands }}</template>
         </round-detail>
 
     </div>

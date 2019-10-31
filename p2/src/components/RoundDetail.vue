@@ -1,9 +1,11 @@
 <template>
-  <div v-bind:class="{ winner : winner == 'Player'}">
-    <ul>
-      <li>Round #: {{ number }}</li>
-      <li>Winner: {{ winner }}</li>
-    </ul>
+  <div>
+    <hr>
+    <p>
+      <div :class="{ win: results == 'win', lose: results == 'lose', draw: results == 'draw' }">Round #: {{ number }}</div>
+      <div>Results: {{ results }}</div>
+      <div>{{ hands }}</div>
+    </p>
   </div>
 </template>
 
@@ -17,9 +19,13 @@ export default {
       type: Number,
       default: 0
     },
-    winner: {
+    results: {
       type: String,
-      default: ""
+      default: "stuff"
+    },
+    hands: {
+      type: String,
+      default: "stuff"
     }
   },
   template: "#round-detail"
