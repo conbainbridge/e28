@@ -43,8 +43,6 @@ var app = new Vue({
                 this.results = 'nothing';
             }
 
-            console.log(this.compHand);
-
             this.rounds.unshift({
                 number: this.round++,
                 results: this.results,
