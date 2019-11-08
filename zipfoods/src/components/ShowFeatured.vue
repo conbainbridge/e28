@@ -13,6 +13,7 @@ import { products } from "./../products.js";
 
 export default {
   name: "ShowFeatured",
+  props: ["category"],
   computed: {
     featuredProducts: function() {
       function isMatch(product) {
@@ -23,7 +24,6 @@ export default {
   },
   data: function() {
     return {
-      category: "snacks",
       products: products
     };
   }
