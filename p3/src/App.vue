@@ -17,14 +17,11 @@
 </template>
 
 <script>
-import notes from "./notes.js";
-
 export default {
   name: "app",
   components: {},
   data: function() {
     return {
-      notes: notes,
       links: ["home", "notes", "todo"]
     };
   }

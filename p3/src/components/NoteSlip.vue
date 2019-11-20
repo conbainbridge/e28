@@ -1,34 +1,32 @@
 <template>
   <div>
-    <div v-for="tester in testers" :key="tester.id" :title="tester.title" class="slip-style">
-      <div class="slip-title">{{ tester.title }}</div>
-      <button class="delete-button">X</button>
+    <div class="slip-style" v-if="notes">
+      <div class="slip-title">{{ notes.title }}</div>
       <hr />
-      <div class="slip-notes">{{ tester.notes }}</div>
+      <div class="slip-notes">{{ notes.note }}</div>
     </div>
   </div>
 </template>
 
 <script>
+const axios = require("axios");
+
 export default {
   name: "NoteSlip",
+  props: ["id"],
   data: function() {
     return {
-      testers: [
-        {
-          title: "Note #1",
-          id: "note1",
-          notes: "These are the notes."
-        },
-        {
-          title: "Note #2",
-          id: "note2",
-          notes: "Oh look, even more notes! But what do they mean?"
-        }
-      ]
+      notes: null
     };
   },
-  props: ["title", "id", "notes"]
+  mounted() {
+    this.notes = axios
+      .get(
+        "https://my-json-server.typicode.com/conbainbridge/e28-p3-api/notes/" +
+          this.id
+      )
+      .then(response => (this.notes = response.data));
+  }
 };
 </script>
 

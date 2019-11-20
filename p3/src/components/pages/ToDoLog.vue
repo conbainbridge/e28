@@ -2,22 +2,27 @@
   <div id="featured">
     <div class="todo-block">
       <h2>To-do:</h2>
-      <to-do-list v-for="todo in todos" :key="todo.id"></to-do-list>
+      <to-do-list v-for="todo in todos" :key="todo.id" :id="todo.id"></to-do-list>
     </div>
   </div>
 </template>
 
 <script>
 import ToDoList from "./../ToDoList.vue";
-import { todos } from "./../../todos.js";
+const axios = require("axios");
 
 export default {
   name: "ToDoLog",
   components: { ToDoList },
   data: function() {
     return {
-      todos: todos
+      todos: null
     };
+  },
+  mounted() {
+    axios
+      .get("https://my-json-server.typicode.com/conbainbridge/e28-p3-api/todos")
+      .then(response => (this.todos = response.data));
   }
 };
 </script>
@@ -26,6 +31,6 @@ export default {
 .todo-block {
   background-color: #483d8b;
   color: white;
-  padding: 5px 10px;
+  padding: 15px;
 }
 </style>
