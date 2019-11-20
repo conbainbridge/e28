@@ -8,23 +8,34 @@
 </template>
 
 <script>
-import { products } from "./../products.js";
+const axios = require("axios");
 
 export default {
-  name: "ShowCategories",
+  name: "CategoriesPage",
   data: function() {
     return {
-      products: products
+      products: null,
+      categories: null
     };
   },
-  computed: {
-    categories: function() {
+  methods: {
+    loadCategories: function() {
       let categories = this.products.map(product => product.categories);
       let mergedCategories = [].concat.apply([], categories);
 
       // Return unique, sorted categories
-      return [...new Set(mergedCategories)].sort();
+      this.categories = [...new Set(mergedCategories)].sort();
     }
+  },
+  mounted() {
+    axios
+      .get(
+        "https://my-json-server.typicode.com/conbainbridge/e28-zipfoods-api/products/"
+      )
+      .then(response => {
+        this.products = response.data;
+        this.loadCategories();
+      });
   }
 };
 </script>

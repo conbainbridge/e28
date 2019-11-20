@@ -1,19 +1,36 @@
 <template>
   <div id="app">
-    <img alt="LiStack logo" src="./assets/logo.png" />
-    <p>LiStack - organizing life into to-do lists and notes</p>
-    <note-slip></note-slip>
+    <div class="header">
+      <img alt="LiStack logo" src="./assets/logo.png" height="100px" />
+    </div>
+
+    <nav>
+      <ul>
+        <li v-for="link in links" :key="link">
+          <router-link exact :to="{name: link}">{{ link }}</router-link>
+        </li>
+      </ul>
+    </nav>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import NoteSlip from "./components/NoteSlip.vue";
+import notes from "./notes.js";
 
 export default {
   name: "app",
-  components: { NoteSlip }
+  components: {},
+  data: function() {
+    return {
+      notes: notes,
+      links: ["home", "notes", "todo"]
+    };
+  }
 };
 </script>
 
 <style>
+@import "./assets/css/styles.css";
 </style>

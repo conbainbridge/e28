@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="tester in testers" :key="tester.title" :title="tester.title" class="slip-style">
+    <div v-for="tester in testers" :key="tester.id" :title="tester.title" class="slip-style">
       <div class="slip-title">{{ tester.title }}</div>
       <button class="delete-button">X</button>
       <hr />
@@ -28,15 +28,16 @@ export default {
       ]
     };
   },
-  props: ["title", "notes"]
+  props: ["title", "id", "notes"]
 };
 </script>
 
 <style scoped>
 .slip-style {
-  background-color: slategrey;
+  background-color: #483d8b;
+  color: white;
   border-style: dashed;
-  border-color: darkblue;
+  border-color: #201a43;
   padding: 15px;
   margin: 15px;
 }
@@ -46,7 +47,7 @@ export default {
 }
 .delete-button {
   float: right;
-  background-color: darkblue;
+  background-color: #201a43;
   color: grey;
 }
 .delete-button:hover {

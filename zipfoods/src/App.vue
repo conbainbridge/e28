@@ -23,13 +23,18 @@ export default {
   data: function() {
     return {
       products: products,
-      links: ["home", "products", "categories"],
-      paths: {
-        home: "/",
-        products: "/products",
-        categories: "/categories"
-      }
+      links: ["home", "products", "categories"]
     };
+  },
+  mounted() {
+    let userObj = {
+      firstName: "Jamal",
+      lastName: "Jones",
+      email: "jjones@gmail.com"
+    };
+    localStorage.setItem("user", JSON.stringify(userObj));
+    userObj = JSON.parse(localStorage.getItem("user"));
+    console.log(userObj.firstName);
   }
 };
 </script>
