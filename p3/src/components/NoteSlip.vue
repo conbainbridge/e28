@@ -43,13 +43,4 @@ export default {
   font-size: 24px;
   text-align: center;
 }
-.delete-button {
-  float: right;
-  background-color: #201a43;
-  color: grey;
-}
-.delete-button:hover {
-  background-color: blue;
-  color: white;
-}
 </style>

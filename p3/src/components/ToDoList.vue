@@ -29,4 +29,11 @@ export default {
 </script>
 
 <style scoped>
+.todo-style {
+  color: white;
+  border-style: dashed;
+  border-color: #201a43;
+  padding: 15px;
+  margin: 15px;
+}
 </style>
