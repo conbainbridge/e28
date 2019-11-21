@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="note">
+    <div>
       <button @click="addNew()">Add note</button>
       <br />
       <div v-if="newNote == true">
