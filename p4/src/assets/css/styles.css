@@ -1,0 +1,63 @@
+body {
+    background-color: #201a43;
+    color: white;
+}
+.header {
+    text-align: center;
+    background-color: #483d8b;
+}
+nav ul {
+    list-style-type: none;
+    padding: 15px;
+    background-color: darkslateblue;
+    font-weight: 800;
+    font-size: 24px;
+  }
+  nav a:link, nav a:visited, nav a:active, nav a:hover {
+    text-decoration: none;
+    color: white;
+  }
+  nav a:hover {
+    color: orange;
+    text-decoration: underline;
+  }
+  nav a:active {
+    color: yellow;
+    text-decoration: underline;
+  }
+  nav li {
+    display: inline-block;
+    padding: 0px 10px;
+  }
+
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  button {
+    background-color: #483d8b;
+    color: white;
+    font-size: 14px;
+    margin: 10px 0px 0px 0px;
+    padding: 10px 20px;
+  }
+  button:hover {
+    background-color: #5b0138;
+    font-size: 14px;
+    margin: 10px 0px 0px 0px;
+    padding: 10px 20px;
+  }
+  button:focus {outline:0;}
+
+  .centered {
+    text-align: center;
+  }
+  .leftDiv {
+    float: left;
+    width: 50%;
+  }
+  .rightDiv {
+    float: right;
+    width: 50%;
+  }
