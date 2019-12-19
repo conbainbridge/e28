@@ -1,10 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store';
 import VueRouter from 'vue-router';
 import HomePage from "./components/pages/HomePage.vue";
 import NoteLog from "./components/pages/NoteLog.vue";
 import ToDoLog from "./components/pages/ToDoLog.vue";
+import Vuelidate from 'vuelidate';
 
+const _ = require('lodash')
+
+Vue.use(Vuelidate);
 Vue.use(VueRouter);
 Vue.config.productionTip = false
 
@@ -20,6 +25,7 @@ const router = new VueRouter({
 });
 
 new Vue({
+  store: store,
   router: router,
   render: h => h(App),
 }).$mount('#app')

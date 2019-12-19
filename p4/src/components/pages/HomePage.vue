@@ -3,7 +3,7 @@
     <h2>Here are some notes and to-do items previously saved on the "server!" 😉</h2>
     <div class="leftDiv">
       <h2>Notes:</h2>
-      <note-slip v-for="note in notes" :key="note.id" :id="note.id"></note-slip>
+      <note-slip v-for="note in notes" :key="note.title" :id="note.title" :note="note"></note-slip>
     </div>
     <div class="rightDiv">
       <h2>To-do items:</h2>
@@ -24,19 +24,18 @@ export default {
   components: { NoteSlip, ToDoList },
   data: function() {
     return {
-      notes: null,
       todos: null
     };
   },
   mounted() {
     axios
-      .get(
-        "https://my-json-server.typicode.com/conbainbridge/e28-p3-api/notes/"
-      )
-      .then(response => (this.notes = response.data));
-    axios
       .get("https://my-json-server.typicode.com/conbainbridge/e28-p3-api/todos")
       .then(response => (this.todos = response.data));
+  },
+  computed: {
+    notes: function() {
+      return this.$store.state.noteData;
+    }
   }
 };
 </script>

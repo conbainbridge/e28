@@ -1,5 +1,5 @@
 module.exports = {
     devServer: {
-        host: 'p3.loc'
+        host: 'p4.loc'
     }
 }

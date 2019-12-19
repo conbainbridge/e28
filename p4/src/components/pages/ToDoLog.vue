@@ -2,14 +2,8 @@
   <div id="featured">
     <div class="todo-block">
       <h2>To-do list:</h2>
-      <h2>Add new item:</h2>
-      <div class="centered">
-        <input type="text" v-model="newDo" />
-        <br />
-        <button @click="addToDo(newDo)">Save new item</button>
-        <to-do-new></to-do-new>
-        <to-do-list v-for="todo in todos" :key="todo.id" :id="todo.id"></to-do-list>
-      </div>
+      <to-do-new></to-do-new>
+      <to-do-list v-for="todo in todos" :key="todo.id" :id="todo.id"></to-do-list>
     </div>
   </div>
 </template>

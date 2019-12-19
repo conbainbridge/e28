@@ -1,0 +1,16 @@
+{
+    "notes": {
+        "note1": {
+            "title": "note1",
+            "note": "This is the first note."
+        },
+        "note2": {
+            "title": "note2",
+            "note": "This is the second note."
+        },
+        "note3": {
+            "title": "note3",
+            "note": "Cool, there's another note here!"
+        }
+    }
+}

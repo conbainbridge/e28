@@ -1,39 +1,51 @@
 <template>
-  <div>
-    <div>
-      <button @click="addNew()">Add note</button>
+  <div id="new-note">
+    <div class="centered">
+      Unique title:
       <br />
-      <div v-if="newNote == true">
-        <div class="new-slip-style" v-if="note">
-          <div class="slip-title">{{ note.title }}</div>
-          <hr />
-          <div class="slip-notes">{{ note.note }}</div>
-        </div>
-      </div>
+      <form @submit.prevent="submitNote">
+        <input type="text" v-model="note.title" />
+        <br />
+        <br />Note:
+        <br />
+        <textarea rows="4" cols="50" v-model="note.note" />
+        <br />
+        <button data-test="add-note" type="submit">Save note</button>
+        <br />
+      </form>
+      <br />
     </div>
   </div>
 </template>
 
 <script>
+import * as app from "./../app.js";
+
+let note = {
+  title: "",
+  note: ""
+};
+
 export default {
   name: "NoteNew",
-  props: ["id"],
   data: function() {
     return {
-      note: null,
-      newNote: false
+      note: note
     };
   },
-  mounted() {
-    if (localStorage.note) {
-      this.title = localStorage.title;
-      this.note = localStorage.note;
-    }
-  },
   methods: {
-    addNew: function() {
-      this.newNote = true;
-      this.note = localStorage;
+    submitNote: function() {
+      app.axios
+        .post("https://listack.firebaseio.com/notes.json", this.note)
+        .then(response => {
+          let key = response.data.name;
+
+          this.$store.commit("addNoteData", {
+            [key]: this.note
+          });
+        });
+
+      this.$store.commit("updateNoteCount", 1);
     }
   }
 };
