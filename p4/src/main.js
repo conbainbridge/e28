@@ -7,7 +7,9 @@ import NoteLog from "./components/pages/NoteLog.vue";
 import ToDoLog from "./components/pages/ToDoLog.vue";
 import Vuelidate from 'vuelidate';
 
-const _ = require('lodash')
+/* eslint-disable no-unused-vars */
+const _ = require('lodash');
+/* eslint-enable no-unused-vars */
 
 Vue.use(Vuelidate);
 Vue.use(VueRouter);

@@ -8,6 +8,13 @@
     <div class="rightDiv">
       <h2>To-do items:</h2>
       <div class="todo-block">
+        <div v-if="newDo">
+          <div class="todonew-style">
+            <input type="checkbox" :value="newDo" />
+            {{ newDo }}
+            <br />
+          </div>
+        </div>
         <to-do-list v-for="todo in todos" :key="todo.id" :id="todo.id"></to-do-list>
       </div>
     </div>
@@ -24,7 +31,8 @@ export default {
   components: { NoteSlip, ToDoList },
   data: function() {
     return {
-      todos: null
+      todos: null,
+      newDo: localStorage.getItem("Todo")
     };
   },
   mounted() {
@@ -46,6 +54,13 @@ export default {
   background-color: #483d8b;
   color: white;
   padding: 15px;
+  padding: 15px;
+  margin: 15px;
+}
+.todonew-style {
+  color: white;
+  border-style: dashed;
+  border-color: #5b0138;
   padding: 15px;
   margin: 15px;
 }

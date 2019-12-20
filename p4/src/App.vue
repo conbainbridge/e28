@@ -7,11 +7,17 @@
     <nav>
       <ul>
         <li v-for="link in links" :key="link">
-          <router-link exact :to="{name: link}">
-            {{ link }}
-            <span data-test="notescount" v-if="link == 'notes'">({{ noteCount }})</span>
-            <span data-test="todocount" v-if="link == 'todo'">({{ todoCount }})</span>
-          </router-link>
+          <router-link exact :to="{name: link}">{{ link }}</router-link>
+        </li>
+        <li>
+          <div>
+            <div v-if="!nameSubmitted && !localName">
+              <input type="text" v-model="yourName" />&nbsp;
+              <button @click="submitName">Save name</button>
+            </div>
+            <div v-if="nameSubmitted" class="your-name">{{yourName}}'s Listack</div>
+            <div v-if="localName" class="your-name">{{localName}}'s Listack</div>
+          </div>
         </li>
       </ul>
     </nav>
@@ -21,32 +27,26 @@
 </template>
 
 <script>
-import * as app from "./app.js";
+// import * as app from "./app.js";
 
 export default {
   name: "app",
   components: {},
   data: function() {
     return {
-      links: ["home", "notes", "todo"]
+      links: ["home", "notes", "todo"],
+      nameSubmitted: false,
+      localName: localStorage.getItem("name"),
+      yourName: null
       // sharedState: app.store
     };
   },
-  computed: {
-    noteCount: function() {
-      return this.$store.state.noteCount;
-    },
-    todoCount: function() {
-      return this.$store.state.todoCount;
+  methods: {
+    submitName: function() {
+      (this.nameSubmitted = true), localStorage.setItem("name", this.yourName);
     }
   },
   mounted() {
-    this.notecount = new app.NoteCount();
-    this.todocount = new app.TodoCount();
-
-    this.$store.commit("setNoteCount", this.notecount.count());
-    this.$store.commit("setTodoCount", this.todocount.count());
-
     this.$store.dispatch("setNoteData");
   }
 };
@@ -54,4 +54,9 @@ export default {
 
 <style>
 @import "./assets/css/styles.css";
+.your-name {
+  font-size: 16px;
+  font-style: italic;
+  color: yellow;
+}
 </style>

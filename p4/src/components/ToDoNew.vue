@@ -1,16 +1,24 @@
 <template>
   <div>
     <div class="centered">
+      Add one custom item:
+      <br />
       <input type="text" v-model="newDo" />
       <br />
-      <button @click="addToDo(newDo)">Save new item</button>
-      <button @click="addNewDo()">Add item</button>
+      <button @click="newTodo">Save item</button>
       <br />
     </div>
     <div v-if="newAdded == true">
-      <div class="todonew-style" v-if="todo">
-        <input type="checkbox" :value="todo.todo" />
-        {{ todo.todo }}
+      <div class="todonew-style" v-if="newDo">
+        <input type="checkbox" :value="newDo" />
+        {{ newDo }}
+        <br />
+      </div>
+    </div>
+    <div v-if="newGet">
+      <div class="todonew-style">
+        <input type="checkbox" :value="newGet" />
+        {{ newGet }}
         <br />
       </div>
     </div>
@@ -18,34 +26,24 @@
 </template>
 
 <script>
-import * as app from "./../app.js";
-
 export default {
   name: "ToDoNew",
   props: ["id"],
   data: function() {
     return {
-      todo: null,
-      newAdded: false
+      newDo: null,
+      newAdded: false,
+      newGet: localStorage.getItem("Todo")
     };
+  },
+  methods: {
+    newTodo: function() {
+      (this.newAdded = true), localStorage.setItem("Todo", this.newDo);
+    }
   },
   mounted() {
     if (localStorage.todo) {
       this.todo = localStorage.todo;
-    }
-  },
-  methods: {
-    addNewDo: function(todo) {
-      let todocount = new app.TodoCount();
-      todocount.add(todo);
-      app.store.todoCount = todocount.count();
-      this.addAlert = true;
-      setTimeout(() => (this.addAlert = false), 2000);
-
-      this.$store.commit("updateTodoCount", 1);
-
-      this.newAdded = true;
-      this.todo = localStorage;
     }
   }
 };

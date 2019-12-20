@@ -4,13 +4,21 @@
       Unique title:
       <br />
       <form @submit.prevent="submitNote">
-        <input type="text" v-model="note.title" />
-        <br />
+        <div class="form-group">
+          <input type="text" data-test="note-title-input" id="title" v-model="$v.note.title.$model" />
+          <div v-if="$v.note.title.$error">
+            <div class="error" v-if="!$v.note.title.required">Please include a title.</div>
+          </div>
+        </div>
         <br />Note:
         <br />
-        <textarea rows="4" cols="50" v-model="note.note" />
+        <textarea rows="4" cols="50" v-model="$v.note.note.$model" />
+        <div v-if="$v.note.note.$error">
+          <div class="error" v-if="!$v.note.note.required">Please include your note.</div>
+        </div>
         <br />
         <button data-test="add-note" type="submit">Save note</button>
+        <div class="error" v-if="formHasErrors">Please correct any errors</div>
         <br />
       </form>
       <br />
@@ -20,6 +28,7 @@
 
 <script>
 import * as app from "./../app.js";
+import { required } from "vuelidate/lib/validators";
 
 let note = {
   title: "",
@@ -30,22 +39,40 @@ export default {
   name: "NoteNew",
   data: function() {
     return {
-      note: note
+      note: note,
+      formHasErrors: false
     };
+  },
+  validations: {
+    note: {
+      title: {
+        required
+      },
+      note: {
+        required
+      }
+    }
+  },
+  watch: {
+    "$v.$anyError": function() {
+      this.formHasErrors = this.$v.$anyError;
+    }
   },
   methods: {
     submitNote: function() {
-      app.axios
-        .post("https://listack.firebaseio.com/notes.json", this.note)
-        .then(response => {
-          let key = response.data.name;
+      if (!this.formHasErrors) {
+        app.axios
+          .post("https://listack.firebaseio.com/notes.json", this.note)
+          .then(response => {
+            let key = response.data.name;
 
-          this.$store.commit("addNoteData", {
-            [key]: this.note
+            this.$store.commit("addNoteData", {
+              [key]: this.note
+            });
           });
-        });
 
-      this.$store.commit("updateNoteCount", 1);
+        this.$store.commit("updateNoteCount", 1);
+      }
     }
   }
 };
@@ -63,5 +90,8 @@ export default {
 .slip-title {
   font-size: 24px;
   text-align: center;
+}
+.error {
+  color: yellow;
 }
 </style>
