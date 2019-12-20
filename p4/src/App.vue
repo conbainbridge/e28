@@ -34,7 +34,7 @@ export default {
   components: {},
   data: function() {
     return {
-      links: ["home", "notes", "todo"],
+      links: ["home", "add note", "add todo"],
       nameSubmitted: false,
       localName: localStorage.getItem("name"),
       yourName: null

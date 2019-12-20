@@ -21,6 +21,13 @@
         <div class="error" v-if="formHasErrors">Please correct any errors</div>
         <br />
       </form>
+      <transition name="fade">
+        <div class="alert" data-test="add-to-cart-confirmation" v-if="addAlert">
+          Note added!
+          <br />
+          <router-link :to="'/'" class="return-home">Back to home Listack</router-link>
+        </div>
+      </transition>
       <br />
     </div>
   </div>
@@ -40,7 +47,8 @@ export default {
   data: function() {
     return {
       note: note,
-      formHasErrors: false
+      formHasErrors: false,
+      addAlert: false
     };
   },
   validations: {
@@ -70,6 +78,7 @@ export default {
               [key]: this.note
             });
           });
+        this.addAlert = true;
       }
     }
   }
@@ -91,5 +100,11 @@ export default {
 }
 .error {
   color: yellow;
+}
+.return-home {
+  color: yellow;
+}
+.return-home:hover {
+  color: white;
 }
 </style>

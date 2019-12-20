@@ -17,8 +17,8 @@ Vue.config.productionTip = false
 
 const routes = [
   { path: '/', name: "home", component: HomePage },
-  { path: '/notes', name: "notes", component: NoteLog },
-  { path: '/todo', name: "todo", component: ToDoLog }
+  { path: '/notes', name: "add note", component: NoteLog },
+  { path: '/todo', name: "add todo", component: ToDoLog }
 ]
 
 const router = new VueRouter({
