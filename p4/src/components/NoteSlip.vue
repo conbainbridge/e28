@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="slip-style">
-      <div class="slip-title">{{ note.title }}</div>
+      <div class="slip-title" data-test="note-title">{{ note.title }}</div>
       <hr />
-      <div class="slip-notes">{{ note.note }}</div>
+      <div class="slip-notes" data-test="note-note">{{ note.note }}</div>
     </div>
   </div>
 </template>

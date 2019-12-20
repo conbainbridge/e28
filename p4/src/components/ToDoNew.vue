@@ -3,9 +3,9 @@
     <div class="centered">
       Add one custom item:
       <br />
-      <input type="text" v-model="newDo" />
+      <input type="text" v-model="newDo" data-test="todo-input" />
       <br />
-      <button @click="newTodo">Save item</button>
+      <button @click="newTodo" data-test="add-todo">Save item</button>
       <br />
     </div>
     <div v-if="newAdded == true">

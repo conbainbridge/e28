@@ -12,7 +12,7 @@
         </div>
         <br />Note:
         <br />
-        <textarea rows="4" cols="50" v-model="$v.note.note.$model" />
+        <textarea rows="4" cols="50" data-test="note-note-input" v-model="$v.note.note.$model" />
         <div v-if="$v.note.note.$error">
           <div class="error" v-if="!$v.note.note.required">Please include your note.</div>
         </div>
@@ -70,8 +70,6 @@ export default {
               [key]: this.note
             });
           });
-
-        this.$store.commit("updateNoteCount", 1);
       }
     }
   }

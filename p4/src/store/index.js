@@ -7,27 +7,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-
         noteData: null,
-        todoData: null,
-        noteCount: 0,
-        todoCount: 0,
+        todoData: null
     },
     mutations: {
-        //note counter
-        setNoteCount(state, payload) {
-            state.noteCount = payload;
-        },
-        updateNoteCount(state, payload) {
-            state.noteCount += payload;
-        },
-        //todo counter
-        setTodoCount(state, payload) {
-            state.todoCount = payload;
-        },
-        updateTodoCount(state, payload) {
-            state.todoCount += payload;
-        },
         //note data
         setNoteData(state, payload) {
             state.noteData = payload;
@@ -47,13 +30,6 @@ export default new Vuex.Store({
             app.axios.get('https://listack.firebaseio.com/notes.json').then(response => {
                 context.commit('setNoteData', response.data)
             });
-        }
-    },
-    getters: {
-        getNoteByTitle(state) {
-            return function (title) {
-                return _.find(state.noteData, { 'title': title });
-            }
         }
     }
 })
